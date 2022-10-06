@@ -67,6 +67,13 @@ void dealloc(Node* head)
 //   function object struct declarations
 // -----------------------------------------------
 
+struct isFiltered
+{
+	bool operator()(int val)
+	{
+		return val % 2 == 1;
+	}
+};
 
 
 
@@ -81,15 +88,43 @@ int main(int argc, char* argv[])
     // -----------------------------------------------
     // Feel free to update any code below this point
     // -----------------------------------------------
-    Node* head = readList(argv[1]);
-    cout << "Original list: ";
-    print(head);
+	Node* head = readList(argv[1]);
+	cout << "Original list: ";
+	print(head);
 
-    // Test out your linked list code
+	// Test out your linked list code
+
+    // -----------------------------------------------
+	// Split/pivot test 1 (Test using input files: llrec-test<1-5>.in)
+    // -----------------------------------------------
+    cout << endl << endl << "PIVOT TEST: " << endl;
+	Node* smaller = nullptr;
+	Node* larger = nullptr;
+
+	int pivot = 8; // Change to any desired integer relavent for each input file
+
+	llpivot(head, smaller, larger, pivot);
+
+	cout << "Pivot: " << pivot << endl;
+	cout << "Smaller list: ";
+	print(smaller);
+	cout << "Larger list: ";
+	print(larger);
 
 
+    // -----------------------------------------------
+	// Filter test (Test using input files: llrec-test<1-5>.in)
+    // -----------------------------------------------
+    head = readList(argv[1]);
 
-    
-    return 0;
+	cout << endl << endl << "FILTER TEST: " << endl;
+	isFiltered comp;
+	head = llfilter<isFiltered>(head, comp);
 
+	cout << "NEW list: ";
+	print(head);
+
+	dealloc(head);
+
+	return 0;
 }
