@@ -65,7 +65,3 @@ int main()
 
 	return 0;
 }
-
-// Compile using
-// g++ -g -Wall --std=c++11 stack_test.cpp -o stack_test.o
-// Run with ./stack_test.o
