@@ -8,6 +8,8 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot)
 {
 	if(head == nullptr)
 	{
+		smaller = nullptr;
+		larger = nullptr;
 		return;
 	}
 
